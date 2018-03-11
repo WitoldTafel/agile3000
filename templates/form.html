@@ -2,7 +2,11 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Story Manager</title>
+        {% if dict is mapping %}
+            <title>Super Sprinter 3000 - Edit Story</title>
+        {% else %}
+            <title>Super Sprinter 3000 - Add new Story</title>
+        {% endif %}
     </head>
     <body>
         {% if dict is mapping %}
