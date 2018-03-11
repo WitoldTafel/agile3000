@@ -2,9 +2,16 @@ from flask import Flask, render_template, redirect, request, session
 import csv
 app = Flask(__name__)
 
+@app.route('/list')
 @app.route('/')
 def route_index():
     return render_template('index.html', stories = list_of_dic_from_file() )
+    
+@app.route('/list',methods=['POST'])
+@app.route('/', methods=['POST'])
+def del_row():
+    del_row_in_file(int(list(request.form.values())[-1]))
+    return render_template('index.html', stories = list_of_dic_from_file())
 
 @app.route('/story')
 def story_add():
@@ -50,6 +57,12 @@ def list_of_dic_from_file():
             
         return dics
 
+def del_row_in_file(row_number):
+    list_dict = list_of_dic_from_file()
+    del list_dict[row_number] 
+    with open('data.csv', 'w') as f: 
+        w = csv.DictWriter(f, sorted(session['story'].keys()))
+        w.writerows(list_dict)
 
 
 

@@ -28,9 +28,11 @@
                <td>{{ row['time'] }}</td>
                <td>{{ row['status'] }}</td>
                <td>
-                  <button type="button" >
-                     <span class="fa fa-trash"></span> 
-                  </button>
+                  <form  method="post" >
+                     <button name="row" type="submit" value={{ stories.index(row)}} >
+                        <span class="fa fa-trash"></span> 
+                     </button>
+                  </form>  
                   <a href="/story/{{ stories.index(row)+1}}">
                     <span class="fa fa-pencil"></span>
                   </a>
