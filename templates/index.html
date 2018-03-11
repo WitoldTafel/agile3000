@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Stories</title>
+    </head>
+    <body>
+        <h1>Stories</h1>
+        <table border = "1">
+            <tr>
+               <th>ID</th>
+               <th>Story Title</th>
+               <th>User Story</th>
+               <th>Acceptance Criteria</th>
+               <th>Businness Value</th>
+               <th>Estimation (h)</th>
+               <th>status</th>
+               <th>Action</th>
+            </tr>
+            {% for row in stories%}
+            <tr>
+               <td>{{ stories.index(row)+1 }} </td>
+               <td>{{ row['story_title'] }}</td>
+               <td>{{ row['story'] }}</td>
+               <td>{{ row['criteria'] }}</td>
+               <td>{{ row['money'] }}</td>
+               <td>{{ row['time'] }}</td>
+               <td>{{ row['status'] }}</td>
+               <td>
+                  <button type="button" >
+                     <span class="fa fa-trash"></span> 
+                  </button>
+                  <a href="/story/{{ stories.index(row)+1}}">
+                    <span class="fa fa-pencil"></span>
+                  </a>
+               </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="/story">Add story</a>
+    </body>
+</html>
