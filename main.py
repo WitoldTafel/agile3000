@@ -38,29 +38,34 @@ def save_edit(story_id):
 
 
 def write_form_to_file():
-    with open('data.csv', 'a') as f: 
+    with open('/home/wiciu/codecool/web/super3000/data.csv', 'a') as f: 
         w = csv.DictWriter(f, sorted(session['story'].keys()))
         w.writerow(session['story'])
 
 def replace_row_in_file(row_number):
     list_dict = list_of_dic_from_file()
     list_dict[row_number-1] = session['story']
-    with open('data.csv', 'w') as f: 
+    with open('/home/wiciu/codecool/web/super3000/data.csv', 'w') as f: 
         w = csv.DictWriter(f, sorted(session['story'].keys()))
         w.writerows(list_dict)
 
 
 def list_of_dic_from_file():
-        with open("data.csv", 'r') as f:
+    try:
+        with open("/home/wiciu/codecool/web/super3000/data.csv") as f:
             reader = csv.DictReader(f,sorted(session['story'].keys()))
             dics = [ d for d in reader ]
-            
-        return dics
+            return dics
+    except FileNotFoundError:
+        with open("/home/wiciu/codecool/web/super3000/data.csv", "a") as f:
+            reader = csv.DictReader(f,sorted(session['story'].keys()))
+            dics = [ d for d in reader ]
+            return dics
 
 def del_row_in_file(row_number):
     list_dict = list_of_dic_from_file()
     del list_dict[row_number] 
-    with open('data.csv', 'w') as f: 
+    with open('/home/wiciu/codecool/web/super3000/data.csv', 'w') as f: 
         w = csv.DictWriter(f, sorted(session['story'].keys()))
         w.writerows(list_dict)
 
