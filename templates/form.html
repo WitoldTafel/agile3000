@@ -1,44 +1,59 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        {% if dict is mapping %}
-            <title>Super Sprinter 3000 - Edit Story</title>
+
+<head>
+    <meta charset="utf-8"> {% if dict is mapping %}
+    <title>Super Sprinter 3000 - Edit Story</title>
+    {% else %}
+    <title>Super Sprinter 3000 - Add new Story</title>
+    {% endif %}
+</head>
+
+<body>
+    {% if dict is mapping %}
+    <h1>User Story Manager - Edit Story</h1>
+    <form method="post">
         {% else %}
-            <title>Super Sprinter 3000 - Add new Story</title>
-        {% endif %}
-    </head>
-    <body>
-        {% if dict is mapping %}
-        <h1>User Story Manager - Edit Story</h1>  
-            <form method="post" >
-        {% else %}
-        <h1>User Story Manager - Add Story</h1>  
-            <form action="/story" method="post" >
-        {% endif %}
-            <label for="title">Story Title:</label> <br>
-            <textarea id="title" name="story_title" rows="1" cols="80">{{dict["story_title"]}}</textarea><br>
-            <label for="story">User Story:</label> <br>
-            <textarea id="story" name="story" rows="5" cols="80">{{dict["story"]}}</textarea><br>
-            <label for="criteria">Acceptance Criteria:</label> <br>
-            <textarea id="criteria" name="criteria" rows="5" cols="80">{{dict["criteria"]}}</textarea><br>
-            <label for="money">Businness Value:</label> <br>
-            <input id="money" type="number" name="money" min="100" max="1500" step="100" value={{dict["money"]}}><br>
-            <label for="time">Estimation (h):</label> <br>
-            <input id="time" type="number" name="time" min="0.5" max="40" step="0.5" value={{dict["time"]}}><br>
-            <label for="status">Status:</label> <br>
-            <select id="status" name="status" value={{dict["status"]}}>
+        <h1>User Story Manager - Add Story</h1>
+        <form action="/story" method="post">
+            {% endif %}
+            <label for="title">Story Title:</label>
+            <br>
+            <textarea id="title" name="story_title" rows="1" cols="80">{{dict["story_title"]}}</textarea>
+            <br>
+            <label for="story">User Story:</label>
+            <br>
+            <textarea id="story" name="story" rows="5" cols="80">{{dict["story"]}}</textarea>
+            <br>
+            <label for="criteria">Acceptance Criteria:</label>
+            <br>
+            <textarea id="criteria" name="criteria" rows="5" cols="80">{{dict["criteria"]}}</textarea>
+            <br>
+            <label for="money">Businness Value:</label>
+            <br>
+            <input id="money" type="number" name="money" min="100" max="1500" step="100" value={{dict[ "money"]}}>
+            <br>
+            <label for="time">Estimation (h):</label>
+            <br>
+            <input id="time" type="number" name="time" min="0.5" max="40" step="0.5" value={{dict[ "time"]}}>
+            <br>
+            <label for="status">Status:</label>
+            <br>
+            <select id="status" name="status" value={{dict[ "status"]}}>
                 <option value="Planning">Planning</option>
                 <option value="TODO">TODO</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Review">Review</option>
                 <option value="Done">Done</option>
-            </select><br><br><br>
-            {% if dict is mapping %}
-                <button type="submit">Update</button>
+            </select>
+            <br>
+            <br>
+            <br> {% if dict is mapping %}
+            <button type="submit">Update</button>
             {% else %}
-                <button type="submit">Create</button>
+            <button type="submit">Create</button>
             {% endif %}
         </form>
-    </body>
+</body>
+
 </html>
